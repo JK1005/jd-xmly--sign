@@ -1,32 +1,31 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: 动物连萌
+name: 京东宠汪汪偷狗粮🐕
 
 on:
     workflow_dispatch:
     schedule:
-        - cron: "0 0-23/2 * * *"
+        - cron: "10 0-21/3 * * *"
     watch:
         types: [started]
     repository_dispatch:
-        types: jd_zoo
+        types: jd_joy_steal
 
 jobs:
     build:
         runs-on: ubuntu-latest
         if: github.event.repository.owner.id == github.event.sender.id
         steps:
-            - name: 拉取代码
-              uses: actions/checkout@v2
-            - name: Use Node.js
+            - uses: actions/checkout@v1
+            - name: Use Node.js 10.x
               uses: actions/setup-node@v1
               with:
-                  node-version: "12.x"
-            - name: 安装依赖包
+                  node-version: 10.x
+            - name: npm install
               run: |
                   npm install
-            - name: "运行【jd_zoo】"
+            - name: "运行 【京东宠汪汪偷狗粮🐕】"
               run: |
                   node onlyOneExecute.js
               env:
@@ -47,6 +46,4 @@ jobs:
                   QYWX_AM: ${{ github.event.client_payload.QYWX_AM || secrets.QYWX_AM }}
                   PUSH_PLUS_TOKEN: ${{ github.event.client_payload.PUSH_PLUS_TOKEN || secrets.PUSH_PLUS_TOKEN }}
                   PUSH_PLUS_USER: ${{ github.event.client_payload.PUSH_PLUS_USER || secrets.PUSH_PLUS_USER }}
-                  JDZOO_SHARECODES: ${{ github.event.client_payload.JDZOO_SHARECODES || secrets.JDZOO_SHARECODES }}
-                  JDZOOPK_SHARECODES: ${{ github.event.client_payload.JDZOOPK_SHARECODES || secrets.JDZOOPK_SHARECODES }}
-                  SYNCURL: https://github.com/wuzhi03/MyActions/raw/main/jd_zoo.js
+                  SYNCURL: https://github.com/wuzhi03/MyActions/raw/main/jd_joy_steal.js
